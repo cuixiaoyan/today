@@ -10,9 +10,9 @@ export function DetailPanel({ newsItem, onClose }: DetailPanelProps) {
   if (!newsItem) return null;
 
   return (
-    <div className="w-full h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
+    <div className="w-full h-full bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-l-4 border-blue-500 dark:border-blue-600 flex flex-col shadow-2xl">
       {/* 头部 */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <div className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
           详情
         </h2>
@@ -23,7 +23,7 @@ export function DetailPanel({ newsItem, onClose }: DetailPanelProps) {
               href={newsItem.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl font-medium transition-all duration-300 text-sm shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
             >
               <span>阅读原文</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ export function DetailPanel({ newsItem, onClose }: DetailPanelProps) {
           {/* 关闭按钮 */}
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+            className="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-300 transform hover:scale-110 hover:rotate-90 active:scale-95"
           >
             <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

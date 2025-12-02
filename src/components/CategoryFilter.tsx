@@ -60,12 +60,12 @@ export function CategoryFilter({
       <div
         key={category.id}
         className={`
-          relative flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium
-          transition-all duration-fast cursor-pointer
+          relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium
+          transition-all duration-300 cursor-pointer transform
           ${
             isSelected
-              ? 'bg-primary text-white shadow-sm scale-105'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-102'
+              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg scale-105 hover:shadow-xl'
+              : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-600 dark:hover:to-gray-600 hover:scale-105 shadow-sm hover:shadow-md'
           }
           ${isMobile ? 'w-full justify-between' : ''}
         `}
@@ -80,16 +80,16 @@ export function CategoryFilter({
         <button
           onClick={(e) => handleFollowClick(e, category.id)}
           className={`
-            flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full
-            transition-all duration-fast hover:scale-110 active:scale-95
+            flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full
+            transition-all duration-300 hover:scale-125 hover:rotate-12 active:scale-95
             ${
               isFollowed
                 ? isSelected
-                  ? 'bg-white/20 text-white'
-                  : 'bg-primary/10 text-primary'
+                  ? 'bg-yellow-400/30 text-yellow-300 animate-pulse'
+                  : 'bg-yellow-400/20 text-yellow-500 animate-pulse'
                 : isSelected
-                ? 'bg-white/10 text-white/60'
-                : 'bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400'
+                ? 'bg-white/20 text-white/70 hover:text-white'
+                : 'bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400'
             }
           `}
           title={isFollowed ? '取消关注' : '关注'}
@@ -101,7 +101,7 @@ export function CategoryFilter({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-md shadow-sm p-3">
+    <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-lg p-3 border border-gray-100 dark:border-gray-700">
       {/* 移动端：显示当前选中的分类和展开按钮 */}
       {isMobile && !isExpanded && (
         <div className="flex items-center justify-between gap-2">

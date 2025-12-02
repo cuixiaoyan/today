@@ -17,9 +17,7 @@ export function usePreferences(): UsePreferencesReturn {
   // 初始化时加载偏好设置
   useEffect(() => {
     const preferences = StorageManager.loadPreferences();
-    if (preferences && preferences.followedCategories) {
-      setFollowedCategories(preferences.followedCategories);
-    }
+    setFollowedCategories(preferences.followedCategories);
   }, []);
 
   // 关注分类
@@ -29,7 +27,11 @@ export function usePreferences(): UsePreferencesReturn {
         return prev;
       }
       const updated = [...prev, categoryId];
-      StorageManager.savePreferences({ followedCategories: updated });
+      const currentPrefs = StorageManager.loadPreferences();
+      StorageManager.savePreferences({ 
+        ...currentPrefs,
+        followedCategories: updated 
+      });
       return updated;
     });
   }, []);
@@ -38,7 +40,11 @@ export function usePreferences(): UsePreferencesReturn {
   const unfollowCategory = useCallback((categoryId: string) => {
     setFollowedCategories(prev => {
       const updated = prev.filter(id => id !== categoryId);
-      StorageManager.savePreferences({ followedCategories: updated });
+      const currentPrefs = StorageManager.loadPreferences();
+      StorageManager.savePreferences({ 
+        ...currentPrefs,
+        followedCategories: updated 
+      });
       return updated;
     });
   }, []);

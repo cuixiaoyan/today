@@ -23,16 +23,29 @@ export class StorageManager {
   /**
    * 加载用户偏好设置
    */
-  static loadPreferences(): UserPreferences | null {
+  static loadPreferences(): UserPreferences {
     try {
       const json = localStorage.getItem(this.PREFERENCES_KEY);
+      const defaultPreferences: UserPreferences = {
+        followedCategories: [],
+        theme: 'light'
+      };
+      
       if (!json) {
-        return null;
+        return defaultPreferences;
       }
-      return JSON.parse(json) as UserPreferences;
+      
+      const loaded = JSON.parse(json);
+      return {
+        ...defaultPreferences,
+        ...loaded
+      };
     } catch (error) {
       console.error('Failed to load preferences:', error);
-      return null;
+      return {
+        followedCategories: [],
+        theme: 'light'
+      };
     }
   }
 

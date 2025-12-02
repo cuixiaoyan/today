@@ -5,6 +5,7 @@
 🌐 **在线体验**: [https://zx.cuicui.host](https://zx.cuicui.host)
 
 ![alt text](image.png)
+![alt text](image-1.png)
 
 ## ✨ 功能特性
 

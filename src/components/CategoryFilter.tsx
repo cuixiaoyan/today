@@ -1,6 +1,7 @@
 import React from 'react';
 import { Category } from '../types';
 import { useResponsive } from '../hooks/useResponsive';
+import { ThemeToggle } from './ThemeToggle';
 
 interface CategoryFilterProps {
   categories: Category[];
@@ -40,13 +41,18 @@ export function CategoryFilter({
   };
 
   return (
-    <div className="bg-surface rounded-md shadow-sm p-3">
+    <div className="bg-white dark:bg-gray-800 rounded-md shadow-sm p-3">
       {/* 分类列表 */}
       <div
         className={`
           ${isMobile ? 'flex flex-col gap-2' : 'flex flex-wrap gap-2'}
         `}
       >
+        {/* 主题切换按钮 */}
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
+        
         {categories.map((category) => {
           const isSelected = selectedCategory === category.id;
           const isFollowed = isFollowing(category.id);

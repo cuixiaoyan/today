@@ -112,7 +112,7 @@ export const API_CATEGORIES: Category[] = [
   { 
     id: 'history', 
     name: '历史上的今天', 
-    endpoint: '/v2/history', 
+    endpoint: '/v2/today-in-history', 
     icon: '📅' 
   },
 ];

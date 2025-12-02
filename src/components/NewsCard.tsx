@@ -23,7 +23,7 @@ export function NewsCard({ news, onClick }: NewsCardProps) {
 
   return (
     <div
-      className="bg-surface rounded-md p-4 shadow-sm hover:shadow-md transition-all duration-fast cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
+      className="bg-white dark:bg-gray-800 rounded-md p-4 shadow-sm hover:shadow-md transition-all duration-fast cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]"
       onClick={handleClick}
     >
       <div className="flex items-start gap-3">
@@ -39,12 +39,12 @@ export function NewsCard({ news, onClick }: NewsCardProps) {
         {/* 内容区域 */}
         <div className="flex-1 min-w-0">
           {/* 标题 */}
-          <h3 className="text-base font-medium text-text-primary mb-2 line-clamp-2">
+          <h3 className="text-base font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
             {news.title}
           </h3>
 
           {/* 元信息 */}
-          <div className="flex items-center gap-3 text-sm text-text-secondary">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
             <span className="flex items-center gap-1">
               <span className="text-xs">📰</span>
               {news.source}

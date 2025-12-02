@@ -4,16 +4,38 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#007AFF',
-        background: '#F2F2F7',
-        surface: '#FFFFFF',
-        'text-primary': '#000000',
-        'text-secondary': '#8E8E93',
-        border: '#C6C6C8',
-        error: '#FF3B30',
+        primary: {
+          DEFAULT: '#007AFF',
+          dark: '#0A84FF',
+        },
+        background: {
+          DEFAULT: '#F2F2F7',
+          dark: '#000000',
+        },
+        surface: {
+          DEFAULT: '#FFFFFF',
+          dark: '#1C1C1E',
+        },
+        'text-primary': {
+          DEFAULT: '#000000',
+          dark: '#FFFFFF',
+        },
+        'text-secondary': {
+          DEFAULT: '#8E8E93',
+          dark: '#98989D',
+        },
+        border: {
+          DEFAULT: '#C6C6C8',
+          dark: '#38383A',
+        },
+        error: {
+          DEFAULT: '#FF3B30',
+          dark: '#FF453A',
+        },
       },
       spacing: {
         'xs': '4px',

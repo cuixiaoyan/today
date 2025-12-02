@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Colors - iOS inspired palette */
+:root,
+:root.light {
+  /* Colors - iOS inspired palette (Light Mode) */
   --color-primary: #007AFF;
   --color-background: #F2F2F7;
   --color-surface: #FFFFFF;
@@ -11,6 +12,17 @@
   --color-text-secondary: #8E8E93;
   --color-border: #C6C6C8;
   --color-error: #FF3B30;
+}
+
+:root.dark {
+  /* Colors - iOS inspired palette (Dark Mode) */
+  --color-primary: #0A84FF;
+  --color-background: #000000;
+  --color-surface: #1C1C1E;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #98989D;
+  --color-border: #38383A;
+  --color-error: #FF453A;
   
   /* Spacing */
   --spacing-xs: 4px;
@@ -53,6 +65,24 @@ body {
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 深色模式下更新 CSS 变量 */
+html.dark {
+  --color-background: #000000;
+  --color-surface: #1C1C1E;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #98989D;
+  --color-border: #38383A;
+  --color-primary: #0A84FF;
+  --color-error: #FF453A;
+}
+
+/* 确保 dark 模式下 body 背景色更新 */
+html.dark body {
+  background-color: #000000;
+  color: #FFFFFF;
 }
 
 #root {

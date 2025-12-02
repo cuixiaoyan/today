@@ -73,29 +73,30 @@ export class NewsAPIService {
           return NewsItemModel.from60sData(response.data.data, response.data.data.date);
         }
 
-        // 特殊处理AI资讯（类似60秒格式）
+        // 特殊处理AI资讯
         if (categoryId === 'ai-news' && response.data.data.news) {
-          return response.data.data.news.map((newsText: string, index: number) => ({
+          return response.data.data.news.map((item: any, index: number) => ({
             id: `${categoryId}-${response.data.data.date}-${index}`,
-            title: newsText,
-            source: categoryName,
+            title: item.title || '',
+            source: item.source || category?.name || 'AI资讯',
             category: categoryId,
-            timestamp: response.data.data.created_at || Date.now(),
-            url: response.data.data.link || '',
+            timestamp: new Date(item.date || response.data.data.date).getTime(),
+            url: item.link || '',
+            description: item.detail || '',
             index: index + 1,
-            image: response.data.data.image || response.data.data.cover || '',
           }));
         }
 
         // 特殊处理历史上的今天
-        if (categoryId === 'history' && Array.isArray(response.data.data)) {
-          return response.data.data.map((item: any, index: number) => ({
-            id: `${categoryId}-${index}`,
-            title: item.title || item.event || '',
-            source: categoryName,
+        if (categoryId === 'history' && response.data.data.items) {
+          return response.data.data.items.map((item: any, index: number) => ({
+            id: `${categoryId}-${response.data.data.date}-${index}`,
+            title: `${item.year}年 - ${item.title}`,
+            source: category?.name || '历史上的今天',
             category: categoryId,
             timestamp: Date.now(),
-            description: item.desc || item.detail || '',
+            description: item.description || '',
+            url: item.link || '',
             index: index + 1,
           }));
         }
@@ -106,7 +107,7 @@ export class NewsAPIService {
           return [{
             id: `${categoryId}-${item.date || Date.now()}`,
             title: item.title || item.copyright || '必应每日壁纸',
-            source: categoryName,
+            source: category?.name || '必应壁纸',
             category: categoryId,
             timestamp: Date.now(),
             url: item.url || item.link || '',
@@ -166,18 +167,77 @@ export class NewsAPIService {
 
     // 如果数据是数组格式
     if (Array.isArray(data)) {
-      return data.map((item, index) => ({
-        id: `${categoryId}-${item.id || item.rank || index}`,
-        title: item.title || item.name || item.word || item.query || '',
-        source: categoryName,
-        category: categoryId,
-        timestamp: item.timestamp || item.time || item.mtime || Date.now(),
-        url: item.url || item.link || item.href || item.mobilUrl || '',
-        description: item.desc || item.description || item.excerpt || item.word_type || '',
-        hot: item.hot || item.hotScore || item.heat || item.hot_value || item.hotValue || item.score || '',
-        index: item.index || item.rank || index + 1,
-        image: item.image || item.pic || item.cover || item.img || item.work_type_icon || '',
-      }));
+      return data.map((item, index) => {
+        // 猫眼全球票房
+        if (categoryId === 'maoyan-global' && item.movie_name) {
+          return {
+            id: `${categoryId}-${item.maoyan_id || index}`,
+            title: `${item.movie_name} (${item.release_year})`,
+            source: categoryName,
+            category: categoryId,
+            timestamp: Date.now(),
+            description: `票房：${item.box_office_desc}`,
+            hot: item.box_office_desc,
+            index: item.rank || index + 1,
+          };
+        }
+
+        // 猫眼电影实时票房
+        if (categoryId === 'maoyan-movie' && item.movie_name) {
+          return {
+            id: `${categoryId}-${item.movie_id || index}`,
+            title: item.movie_name,
+            source: categoryName,
+            category: categoryId,
+            timestamp: Date.now(),
+            description: `${item.release_info || ''} 票房：${item.box_office_desc} 占比：${item.box_office_rate}`,
+            hot: item.box_office_desc,
+            index: index + 1,
+          };
+        }
+
+        // 猫眼电视收视排行
+        if (categoryId === 'maoyan-tv' && item.programme_name) {
+          return {
+            id: `${categoryId}-${index}`,
+            title: item.programme_name,
+            source: `${categoryName} - ${item.channel_name}`,
+            category: categoryId,
+            timestamp: Date.now(),
+            description: `市场份额：${item.market_rate_desc} 关注度：${item.attention_rate_desc}`,
+            hot: item.market_rate_desc,
+            index: index + 1,
+          };
+        }
+
+        // 猫眼网剧实时热度
+        if (categoryId === 'maoyan-drama' && item.series_name) {
+          return {
+            id: `${categoryId}-${item.series_id || index}`,
+            title: item.series_name,
+            source: categoryName,
+            category: categoryId,
+            timestamp: Date.now(),
+            description: `${item.release_info || ''} ${item.platform_desc || ''} 热度：${item.curr_heat_desc}`,
+            hot: item.curr_heat_desc,
+            index: index + 1,
+          };
+        }
+
+        // 通用格式
+        return {
+          id: `${categoryId}-${item.id || item.rank || index}`,
+          title: item.title || item.name || item.word || item.query || '',
+          source: categoryName,
+          category: categoryId,
+          timestamp: item.timestamp || item.time || item.mtime || Date.now(),
+          url: item.url || item.link || item.href || item.mobilUrl || '',
+          description: item.desc || item.description || item.excerpt || item.word_type || '',
+          hot: item.hot || item.hotScore || item.heat || item.hot_value || item.hotValue || item.score || '',
+          index: item.index || item.rank || index + 1,
+          image: item.image || item.pic || item.cover || item.img || item.work_type_icon || '',
+        };
+      });
     }
 
     // 如果数据是对象格式，尝试提取列表

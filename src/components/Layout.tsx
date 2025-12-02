@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Header } from './Header';
 import { MainContent } from './MainContent';
-import { Footer } from './Footer';
 import { Category } from '../types';
 
 interface LayoutProps {
@@ -25,7 +24,7 @@ export function Layout({
   onToggleFollow,
 }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
       <Header
         categories={categories}
         selectedCategory={selectedCategory}
@@ -35,8 +34,6 @@ export function Layout({
       />
       
       <MainContent>{children}</MainContent>
-      
-      <Footer />
     </div>
   );
 }

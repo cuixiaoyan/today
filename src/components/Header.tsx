@@ -21,9 +21,9 @@ export function Header({
   onToggleFollow,
 }: HeaderProps) {
   return (
-    <header className="bg-surface shadow-sm sticky top-0 z-50">
+    <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
-        {/* 分类筛选 */}
+        {/* 分类筛选（包含主题切换按钮） */}
         <CategoryFilter
           categories={categories}
           selectedCategory={selectedCategory}

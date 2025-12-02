@@ -8,12 +8,13 @@ interface NewsListProps {
   loading: boolean;
   error: string | null;
   onRetry: () => void;
+  onNewsClick?: (news: NewsItem) => void;
 }
 
 /**
  * 新闻列表组件
  */
-export function NewsList({ news, loading, error, onRetry }: NewsListProps) {
+export function NewsList({ news, loading, error, onRetry, onNewsClick }: NewsListProps) {
   // 加载状态
   if (loading) {
     return <LoadingSpinner />;
@@ -59,7 +60,11 @@ export function NewsList({ news, loading, error, onRetry }: NewsListProps) {
   return (
     <div className="space-y-3">
       {news.map((item) => (
-        <NewsCard key={item.id} news={item} />
+        <NewsCard 
+          key={item.id} 
+          news={item} 
+          onClick={onNewsClick}
+        />
       ))}
     </div>
   );

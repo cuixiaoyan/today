@@ -62,7 +62,7 @@ export interface AppState {
 // 用户偏好设置
 export interface UserPreferences {
   followedCategories: string[];
-  theme?: 'light' | 'dark';
+  theme: 'light' | 'dark';
 }
 
 // 错误类型

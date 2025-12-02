@@ -10,6 +10,7 @@ interface LayoutProps {
   followedCategories: string[];
   onSelectCategory: (categoryId: string | null) => void;
   onToggleFollow: (categoryId: string) => void;
+  onShowFollowed: () => void;
 }
 
 /**
@@ -22,6 +23,7 @@ export function Layout({
   followedCategories,
   onSelectCategory,
   onToggleFollow,
+  onShowFollowed,
 }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
@@ -31,6 +33,7 @@ export function Layout({
         followedCategories={followedCategories}
         onSelectCategory={onSelectCategory}
         onToggleFollow={onToggleFollow}
+        onShowFollowed={onShowFollowed}
       />
       
       <MainContent>{children}</MainContent>

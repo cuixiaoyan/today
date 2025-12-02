@@ -10,9 +10,9 @@ export function DetailPanel({ newsItem, onClose }: DetailPanelProps) {
   if (!newsItem) return null;
 
   return (
-    <div className="w-2/3 bg-surface dark:bg-gray-800 border-l border-border dark:border-gray-700 flex flex-col">
+    <div className="w-full h-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
       {/* 头部 */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
           详情
         </h2>

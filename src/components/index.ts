@@ -4,5 +4,7 @@ export { LoadingSpinner } from './LoadingSpinner';
 export { CategoryFilter } from './CategoryFilter';
 export { Header } from './Header';
 export { MainContent } from './MainContent';
-export { Footer } from './Footer';
 export { Layout } from './Layout';
+export { DetailPanel } from './DetailPanel';
+export { ThemeToggle } from './ThemeToggle';
+export { ErrorBoundary } from './ErrorBoundary';

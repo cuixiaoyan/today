@@ -4,8 +4,8 @@
 
 🌐 **在线体验**: [https://zx.cuicui.host](https://zx.cuicui.host)
 
-![alt text](image.png)
-![alt text](image-1.png)
+![电脑端](https://img.meituan.net/csc/244f90433a692181f1e16415687368272291611.png)
+![移动端](https://m.360buyimg.com/i/jfs/t1/373053/35/6834/123325/693649e6F80a848f7/c2aba59ea3fc02ac.png)
 
 ## ✨ 功能特性
 
